@@ -297,9 +297,6 @@ def QAM_demodulation(Fc,t,a1,a2,signal,fcutoff=2_000,order=4):
     local_oscilator = np.sin(2*np.pi*Fc*t) # Carrier in phase
     local_oscilator_q = np.sin(2*np.pi*Fc*t + np.pi/2) # Carrier in quadrature
 
-    b, a = scipy.signal.butter(20, 2*np.pi*(Fc+20), fs=FSH, btype='high', analog=False)  # filter coefficients
-    signal = scipy.signal.lfilter(b, a, signal)  # apply band-pass filter
-
     demod1 = a1 * signal * local_oscilator  # demodulate message1 signal
     demod2 = a2 * signal * local_oscilator_q  # demodulate message2 signal
     
